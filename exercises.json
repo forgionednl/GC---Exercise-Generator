@@ -1,0 +1,383 @@
+[
+  {
+    "exercise_id": "MATH_QE_001",
+    "topic": "equazioni_secondo_grado",
+    "type": "parametric",
+    "title": "Equazione di secondo grado a partire dalle radici",
+    "difficulty_levels": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "random_params": {
+      "x1": {
+        "easy": {
+          "min": -5,
+          "max": 5
+        },
+        "medium": {
+          "min": -10,
+          "max": 10
+        },
+        "hard": {
+          "min": -6,
+          "max": 6,
+          "denominators": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "x2": {
+        "easy": {
+          "min": -5,
+          "max": 5
+        },
+        "medium": {
+          "min": -10,
+          "max": 10
+        },
+        "hard": {
+          "min": -6,
+          "max": 6,
+          "denominators": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "a": {
+        "easy": {
+          "min": 1,
+          "max": 1
+        },
+        "medium": {
+          "min": 1,
+          "max": 3
+        },
+        "hard": {
+          "min": 1,
+          "max": 3,
+          "times": "den(x1)*den(x2)"
+        }
+      }
+    },
+    "constraints": {
+      "all": [
+        "x1 < x2",
+        "x1 + x2 != 0",
+        "x1 != 0",
+        "x2 != 0"
+      ],
+      "easy": [
+        "x2 - x1 <= 8"
+      ],
+      "medium": [
+        "abs(x1 + x2) <= 15"
+      ],
+      "hard": [
+        "abs(b) <= 100",
+        "abs(c) <= 300"
+      ]
+    },
+    "formulas": {
+      "b": {
+        "expr": "-a*(x1 + x2)",
+        "text": "b = −a·(x1 + x2)",
+        "text_values": "b = −{a}·({x1} + {x2})"
+      },
+      "c": {
+        "expr": "a*x1*x2",
+        "text": "c = a·x1·x2"
+      },
+      "b2": {
+        "expr": "b**2",
+        "text": "b²",
+        "text_values": "{b:paren}²"
+      },
+      "ac4": {
+        "expr": "4*a*c",
+        "text": "4ac",
+        "text_values": "4·{a}·{c:paren}"
+      },
+      "delta": {
+        "expr": "b2 - ac4",
+        "text": "Δ = b² − 4ac",
+        "text_values": "Δ = {b2} − {ac4:paren}"
+      },
+      "sqrt_delta": {
+        "expr": "sqrt(delta)",
+        "text": "√Δ"
+      },
+      "minus_b": {
+        "expr": "-b",
+        "text": "−b"
+      },
+      "two_a": {
+        "expr": "2*a",
+        "text": "2a"
+      },
+      "root_minus": {
+        "expr": "(minus_b - sqrt_delta)/two_a",
+        "text": "x = (−b − √Δ) / (2a)",
+        "text_values": "x = ({minus_b} − {sqrt_delta}) / {two_a}"
+      },
+      "root_plus": {
+        "expr": "(minus_b + sqrt_delta)/two_a",
+        "text": "x = (−b + √Δ) / (2a)",
+        "text_values": "x = ({minus_b} + {sqrt_delta}) / {two_a}"
+      }
+    },
+    "problem_template": "Risolvi l'equazione di secondo grado: {a:lead_x²}{b:term_x}{c:signed} = 0",
+    "correct_solution": "x1 = {x1}, x2 = {x2}",
+    "intermediate_steps": [
+      {
+        "description": "Calcola {formula_b2}, dove b = {b} è il coefficiente di x",
+        "value": "b2",
+        "hints": [
+          "Elevare al quadrato significa moltiplicare il numero per se stesso: anche partendo da un numero negativo il risultato è positivo.",
+          "Sostituisci il valore: {formula_b2_values} = {b:paren}·{b:paren}."
+        ],
+        "label": "b²"
+      },
+      {
+        "description": "Calcola {formula_ac4}, dove a = {a} e c = {c}",
+        "value": "ac4",
+        "hints": [
+          "Moltiplica tra loro 4, a e c: attenzione al segno di c.",
+          "Sostituisci i valori: {formula_ac4_values}."
+        ],
+        "label": "4ac"
+      },
+      {
+        "description": "Calcola il discriminante: {formula_delta}",
+        "value": "delta",
+        "hints": [
+          "Sottrai il risultato del passaggio 2 da quello del passaggio 1.",
+          "Sostituisci i risultati dei passaggi precedenti: {formula_delta_values}."
+        ],
+        "label": "il discriminante Δ"
+      },
+      {
+        "description": "Calcola la radice quadrata del discriminante, {formula_sqrt_delta}",
+        "value": "sqrt_delta",
+        "hints": [
+          "Cerca il numero che, elevato al quadrato, dà Δ: Δ è un quadrato perfetto.",
+          "Prova con i quadrati dei numeri vicini: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144…"
+        ],
+        "label": "√Δ"
+      },
+      {
+        "description": "Calcola la radice minore con {formula_root_minus}",
+        "value": "root_minus",
+        "hints": [
+          "Il segno meno davanti alla radice dà la soluzione più piccola.",
+          "Ricorda che −b = {minus_b} e che 2a = {two_a}: {formula_root_minus_values}."
+        ],
+        "label": "la radice minore"
+      },
+      {
+        "description": "Calcola la radice maggiore con {formula_root_plus}",
+        "value": "root_plus",
+        "hints": [
+          "Come prima, ma con il segno più davanti alla radice.",
+          "Ricorda che −b = {minus_b} e che 2a = {two_a}: {formula_root_plus_values}."
+        ],
+        "label": "la radice maggiore"
+      }
+    ],
+    "checks": [
+      "a*x1**2 + b*x1 + c",
+      "a*x2**2 + b*x2 + c",
+      "b**2 - 4*a*c - delta",
+      "x1 + x2 + b/a",
+      "x1*x2 - c/a"
+    ],
+    "solve_checks": [
+      {
+        "equation": "a*x**2 + b*x + c",
+        "variable": "x",
+        "expected": [
+          "x1",
+          "x2"
+        ]
+      }
+    ]
+  },
+  {
+    "exercise_id": "PHYS_KIN_001",
+    "topic": "fisica_moto_accelerato",
+    "type": "parametric",
+    "title": "Auto in moto uniformemente accelerato: velocità, spazio, forza, lavoro",
+    "difficulty_levels": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "random_params": {
+      "m": {
+        "easy": {
+          "values": [
+            1000
+          ]
+        },
+        "medium": {
+          "values": [
+            800,
+            1000,
+            1200
+          ]
+        },
+        "hard": {
+          "values": [
+            800,
+            1000,
+            1200,
+            1500
+          ]
+        }
+      },
+      "v0": {
+        "easy": {
+          "values": [
+            0
+          ]
+        },
+        "medium": {
+          "min": 0,
+          "max": 5
+        },
+        "hard": {
+          "min": 2,
+          "max": 10
+        }
+      },
+      "a": {
+        "easy": {
+          "min": 1,
+          "max": 3
+        },
+        "medium": {
+          "min": 1,
+          "max": 5
+        },
+        "hard": {
+          "min": 2,
+          "max": 6
+        }
+      },
+      "t": {
+        "easy": {
+          "min": 2,
+          "max": 6
+        },
+        "medium": {
+          "min": 3,
+          "max": 10
+        },
+        "hard": {
+          "min": 4,
+          "max": 12
+        }
+      }
+    },
+    "constraints": {
+      "all": [
+        "(a*t**2) % 2 == 0"
+      ],
+      "easy": [
+        "a*t <= 15"
+      ],
+      "medium": [
+        "a*t <= 40"
+      ],
+      "hard": [
+        "v <= 70"
+      ]
+    },
+    "formulas": {
+      "v": {
+        "expr": "v0 + a*t",
+        "text": "v = v0 + a·t",
+        "text_values": "v = {v0} + {a}·{t}"
+      },
+      "s": {
+        "expr": "v0*t + a*t**2/2",
+        "text": "s = v0·t + ½·a·t²",
+        "text_values": "s = {v0}·{t} + ½·{a}·{t}²"
+      },
+      "F": {
+        "expr": "m*a",
+        "text": "F = m·a",
+        "text_values": "F = {m}·{a}"
+      },
+      "W": {
+        "expr": "F*s",
+        "text": "W = F·s",
+        "text_values": "W = {F}·{s}"
+      },
+      "dEc": {
+        "expr": "m*(v**2 - v0**2)/2",
+        "text": "ΔEc = ½·m·(v² − v0²)",
+        "text_values": "ΔEc = ½·{m}·({v}² − {v0}²)"
+      }
+    },
+    "problem_template": "Un'auto di massa m = {m} kg si muove con velocità iniziale v0 = {v0} m/s e accelera con accelerazione costante a = {a} m/s² per t = {t} s. Calcola la velocità finale v e lo spazio percorso s (m/s e m), poi verifica che il lavoro della forza motrice sia uguale alla variazione di energia cinetica.",
+    "correct_solution": "v = {v} m/s, s = {s} m",
+    "intermediate_steps": [
+      {
+        "description": "Calcola la velocità finale con {formula_v}",
+        "value": "v",
+        "hints": [
+          "Nel moto uniformemente accelerato la velocità cresce di a ogni secondo: aggiungi alla velocità iniziale l'incremento a·t.",
+          "Sostituisci i valori: {formula_v_values}."
+        ],
+        "label": "la velocità finale v"
+      },
+      {
+        "description": "Calcola lo spazio percorso con {formula_s}",
+        "value": "s",
+        "hints": [
+          "Lo spazio ha due contributi: quello che farebbe a velocità costante (v0·t) e quello dovuto all'accelerazione (½·a·t²).",
+          "Sostituisci i valori: {formula_s_values}."
+        ],
+        "label": "lo spazio percorso s"
+      },
+      {
+        "description": "Calcola la forza risultante con {formula_F}",
+        "value": "F",
+        "hints": [
+          "È il secondo principio della dinamica: forza = massa per accelerazione (in newton).",
+          "Sostituisci i valori: {formula_F_values}."
+        ],
+        "label": "la forza F"
+      },
+      {
+        "description": "Calcola il lavoro della forza con {formula_W}",
+        "value": "W",
+        "hints": [
+          "Il lavoro è la forza per lo spazio percorso nella direzione della forza (in joule). Usa i risultati dei passaggi 2 e 3.",
+          "Sostituisci i valori: {formula_W_values}."
+        ],
+        "label": "il lavoro W"
+      },
+      {
+        "description": "Calcola la variazione di energia cinetica con {formula_dEc}",
+        "value": "dEc",
+        "hints": [
+          "Energia cinetica = ½·m·v². La variazione è quella finale meno quella iniziale. Deve coincidere con il lavoro del passaggio 4 (teorema dell'energia cinetica).",
+          "Sostituisci i valori: {formula_dEc_values}."
+        ],
+        "label": "la variazione di energia cinetica ΔEc"
+      }
+    ],
+    "checks": [
+      "W - dEc",
+      "s - (v0 + v)*t/2",
+      "v**2 - v0**2 - 2*a*s",
+      "F*s - m*(v**2 - v0**2)/2"
+    ]
+  }
+]
